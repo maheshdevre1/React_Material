@@ -3,6 +3,7 @@ React Interview Question and Answers
 Que 1)How does React.js work?
 Que 2) What is JSX? How is JSX Converted into JavaScript?
 Que 3 What is a React Component ?
+Que 4) What are Props in React? 
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -87,4 +88,42 @@ class Welcome extends React.Component {
 A React component is a reusable building block of a React application that represents a part of the UI. There are two types of components: Functional components, 
 which are JavaScript functions, and Class components, which are ES6 classes. With the introduction of Hooks, functional components can manage state and lifecycle 
 methods, and are now commonly used.
+
+Que 4) What are Props in React? 
+Props (short for properties) are used to pass data from parent component to child component.
+👉 Props are like function parameters.
+👉 They help components communicate with each other.
+🧠 Example (Functional Component)
+function Welcome(props) {
+  return <h1>Hello {props.name}</h1>;
+}
+<Welcome name="Mahesh" />
+Here:
+"Mahesh" is passed as a prop.
+Inside the component, we access it using props.name.
+🧠 Example (Class Component)
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello {this.props.name}</h1>;
+  }
+}
+👉 In class components, we use:
+this.props.name
+✅ What are Default Props?
+Sometimes, the parent component does not pass a value.
+In that case, default props provide a default (fallback) value.
+👉 This prevents undefined errors.
+🔹 Default Props in Class Component
+Welcome.defaultProps = {
+  name: "Guest"
+};
+If no name is passed, it will show Hello Guest.
+🔹 Default Props in Functional Component
+function Welcome({ name = "Guest" }) {
+  return <h1>Hello {name}</h1>;
+}
+Here, "Guest" is the default value.
+🎯 Interview Answer (Short & Professional)
+Props are used to pass data from a parent component to a child component in React. They are read-only and help make components reusable. Default props are 
+fallback values assigned to props when no value is provided by the parent, preventing undefined errors.
 
