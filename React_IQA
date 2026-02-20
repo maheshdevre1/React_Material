@@ -2,6 +2,7 @@ React Interview Question and Answers
 -------------------------------------
 Que 1)How does React.js work?
 Que 2) What is JSX? How is JSX Converted into JavaScript?
+Que 3 What is a React Component ?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -49,4 +50,41 @@ const element = React.createElement(
 🎯 Interview Answer (Short & Professional)
 JSX is a syntax extension of JavaScript used in React that allows writing HTML-like code inside JavaScript. Browsers cannot 
 understand JSX directly, so Babel transpiles it into regular JavaScript using React.createElement().
+
+Que 3 What is a React Component?
+A component is a small, reusable part of a user interface.
+In React, everything is made using components.
+👉 Think of components like building blocks (LEGO pieces) 🧱
+You combine small pieces to build a complete application.
+For example:
+Header,Navbar,Button,Form,Footer
+Each of these can be a separate component.
+✅ Types of Components in React
+There are mainly two types:
+1️⃣ Functional Components
+These are simple JavaScript functions.
+They return JSX (UI).
+With Hooks, they can manage state and lifecycle features.
+Example:
+function Welcome() {
+  return <h1>Hello Mahesh</h1>;
+}
+👉 Easy to write
+👉 Mostly used in modern React
+2️⃣ Class Components
+These are created using ES6 class.
+They can manage state and lifecycle methods.
+Used more in older React versions.
+Example:
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello Mahesh</h1>;
+  }
+}
+👉 More complex
+👉 Less used now (functional components + hooks are preferred)
+🎯 Interview Answer (Short & Professional)
+A React component is a reusable building block of a React application that represents a part of the UI. There are two types of components: Functional components, 
+which are JavaScript functions, and Class components, which are ES6 classes. With the introduction of Hooks, functional components can manage state and lifecycle 
+methods, and are now commonly used.
 
