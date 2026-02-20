@@ -1,1 +1,21 @@
+React Interview Question and Answers
+-------------------------------------
+Que 1)How does React.js work?
+
+Que 1)How does React.js work?
+1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
+2. React divides the UI into reusable components.
+3. It uses JSX to write HTML inside JavaScript.
+4. React creates a Virtual DOM, which is a lightweight copy of the real DOM.
+5.When data changes, React compares the old and new Virtual DOM (this process is called reconciliation).
+6. It updates only the changed parts in the real DOM, which improves performance.
+7. React follows one-way data binding, where data flows from parent to child through props.
+8. When the state of a component changes, React automatically re-renders that component.
+👉 Because of Virtual DOM and efficient updates, React applications are fast and scalable.
+*)What is DOM ?
+DOM (Document Object Model) is a tree-like representation of an HTML document created by the browser. It allows JavaScript to access and modify 
+the content, structure, and styles of a web page dynamically.
+*)Difference between Real DOM and Virtual DOM
+The Real DOM is the actual browser representation of a web page, while the Virtual DOM is a lightweight copy maintained by React in memory. 
+React compares the old and new Virtual DOM and updates only the changed elements in the Real DOM, which improves performance.
 
