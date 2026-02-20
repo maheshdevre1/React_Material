@@ -1,6 +1,7 @@
 React Interview Question and Answers
 -------------------------------------
 Que 1)How does React.js work?
+Que 2) What is JSX? How is JSX Converted into JavaScript?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -18,4 +19,34 @@ the content, structure, and styles of a web page dynamically.
 *)Difference between Real DOM and Virtual DOM
 The Real DOM is the actual browser representation of a web page, while the Virtual DOM is a lightweight copy maintained by React in memory. 
 React compares the old and new Virtual DOM and updates only the changed elements in the Real DOM, which improves performance.
+
+Que 2) What is JSX?✅ How is JSX Converted into JavaScript?
+JSX stands for JavaScript XML.
+It allows us to write HTML-like code inside JavaScript.
+Instead of writing complicated JavaScript to create elements, JSX makes code easy to read and write.
+🧠 Simple Example
+const name = "Mahesh";
+const element = (
+  <h1>Hello, {name}</h1>
+);
+👉 {name} means we are using a JavaScript variable inside JSX.
+👉 Curly braces { } are used to write JavaScript expressions inside JSX.
+Browsers do not understand JSX directly ❌
+So React uses a tool called Babel.
+🔄 What Babel Does:
+It converts JSX into normal JavaScript.
+Example:
+JSX Code:
+const element = <h1>Hello, World!</h1>;
+Babel converts it into:
+const element = React.createElement(
+  "h1",
+  null,
+  "Hello, World!"
+);
+👉 React.createElement() creates a JavaScript object that represents the UI.
+👉 Then React uses this to update the DOM.
+🎯 Interview Answer (Short & Professional)
+JSX is a syntax extension of JavaScript used in React that allows writing HTML-like code inside JavaScript. Browsers cannot 
+understand JSX directly, so Babel transpiles it into regular JavaScript using React.createElement().
 
