@@ -6,6 +6,7 @@ Que 3 What is a React Component ?
 Que 4) What are Props in React? 
 Que 5) What is State in React?
 Que 6) Difference Between Props and State in React?
+Que 7) What are Fragments in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -272,4 +273,50 @@ Props	State
 Passed from parent	Managed inside component
 Cannot change	Can change
 Read-only	Read & Write
+
+Que 7) What are Fragments in React?
+👉 Fragments are used to group multiple elements without adding an extra <div> in the HTML.
+Normally, React allows only one parent element to return.
+So we usually do this:
+return (
+  <div>
+    <h1>Hello</h1>
+    <p>Welcome</p>
+  </div>
+);
+But sometimes we don’t want that extra <div> in the DOM.
+That’s where Fragments help ✅
+🔹 Using Fragment (Short Syntax)
+return (
+  <>
+    <h1>Hello</h1>
+    <p>Welcome</p>
+  </>
+);
+✔ No extra <div> added
+✔ Keeps DOM clean
+🔹 Using Full Syntax
+return (
+  <React.Fragment>
+    <h1>Hello</h1>
+    <p>Welcome</p>
+  </React.Fragment>
+);
+👉 Full syntax is used when we need to add a key (mostly in lists).
+🔥 Why Do We Use Fragments?
+Avoid unnecessary <div> in HTML
+Keep DOM clean
+Useful in tables and lists
+Makes code cleaner and lightweight
+🎯 Very Simple Example
+Without Fragment (Extra div added):
+<div>
+  <h1>Hello</h1>
+  <p>Welcome</p>
+</div>
+With Fragment (No extra div):
+<h1>Hello</h1>
+<p>Welcome</p>
+🧠 Simple One-Line Definition
+👉 Fragments let you return multiple elements without adding an extra wrapper element in the DOM.
 
