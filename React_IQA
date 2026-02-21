@@ -8,6 +8,7 @@ Que 5) What is State in React?
 Que 6) Difference Between Props and State in React?
 Que 7) What are Fragments in React?
 Que 8) What is the difference between controlled and uncontrolled components?
+Que 9) How does the DOM manage input value in Uncontrolled Components?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -381,4 +382,47 @@ Uncontrolled = You write answers and teacher checks only at the end 📄
 🧠 One-Line Difference
 👉 Controlled components use state to manage input.
 👉 Uncontrolled components use ref to read input directly from the DOM.
+
+Que 9) How does the DOM manage input value in Uncontrolled Components?
+----------------------------------------------------------------------
+👉 In uncontrolled components, React does not store the input value in state.
+Instead:
+The browser (DOM) keeps the value.
+React only reads the value when needed using ref.
+🧠 Simple Understanding
+When you type inside an input box:
+In controlled component → React saves every letter in state.
+In uncontrolled component → The browser keeps the value internally.
+React checks it only when required (like on submit).
+🔹 Example
+import React, { useRef } from "react";
+function Form() {
+  const inputRef = useRef();
+  const handleSubmit = () => {
+    alert(inputRef.current.value);
+  };
+  return (
+    <>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+}
+🔎 What Happens Here?
+You type in the input.
+The DOM stores the value internally.
+When you click Submit,
+inputRef.current.value gets the value from the DOM.
+React did not track every keystroke.
+🔥 Key Points
+Input value is stored in DOM, not in React state.
+We use useRef() or createRef() to access it.
+React does not re-render when input changes.
+Good for simple forms.
+🎯 Very Simple Example
+Think like this note analogy:
+Controlled → You tell your friend every word you write.
+Uncontrolled → You write everything yourself, and show it only at the end.
+🧠 One-Line Answer
+👉 In uncontrolled components, the browser DOM stores and manages the input value, and React accesses it using ref only when needed.
 
