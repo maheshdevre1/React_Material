@@ -7,6 +7,7 @@ Que 4) What are Props in React?
 Que 5) What is State in React?
 Que 6) Difference Between Props and State in React?
 Que 7) What are Fragments in React?
+Que 8) What is the difference between controlled and uncontrolled components?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -319,4 +320,65 @@ With Fragment (No extra div):
 <p>Welcome</p>
 🧠 Simple One-Line Definition
 👉 Fragments let you return multiple elements without adding an extra wrapper element in the DOM.
+
+Que 8) What is the difference between controlled and uncontrolled components?
+🔹 Controlled Components
+👉 In controlled components, React controls the input field.
+The input value is stored in React state
+Every time you type, onChange updates the state
+The state becomes the single source of truth
+✅ Example:
+import React, { useState } from "react";
+function Form() {
+  const [name, setName] = useState("");
+  return (
+    <input
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
+}
+🔎 What is happening?
+value={name} → React controls the input
+onChange → Updates state every time you type
+✔ Full control
+✔ Easy validation
+✔ Good for complex forms
+🔹 Uncontrolled Components
+👉 In uncontrolled components, the DOM controls the input field.
+React does not store input value in state
+We use ref to get the value when needed
+Simpler for small forms
+✅ Example:
+import React, { useRef } from "react";
+function Form() {
+  const inputRef = useRef();
+  const handleSubmit = () => {
+    alert(inputRef.current.value);
+  };
+  return (
+    <>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+}
+🔎 What is happening?
+No state used
+Value is taken directly from DOM using ref
+✔ Less code
+✔ Simple forms
+🔥 Main Difference (Very Simple)
+Controlled	Uncontrolled
+React controls input	DOM controls input
+Uses useState	Uses useRef
+Better for validation	Less control
+More code	Less code
+🎯 Simple Real-Life Example
+Controlled = Teacher checking every answer you write ✏️
+Uncontrolled = You write answers and teacher checks only at the end 📄
+🧠 One-Line Difference
+👉 Controlled components use state to manage input.
+👉 Uncontrolled components use ref to read input directly from the DOM.
 
