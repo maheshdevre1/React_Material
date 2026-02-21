@@ -5,6 +5,7 @@ Que 2) What is JSX? How is JSX Converted into JavaScript?
 Que 3 What is a React Component ?
 Que 4) What are Props in React? 
 Que 5) What is State in React?
+Que 6) Difference Between Props and State in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -185,4 +186,90 @@ When state updates, UI updates automatically.
 State is the internal, mutable data of a React component that controls its behavior and rendering. When state changes, React re-renders the component. 
 In class components, state is updated using setState(), and in functional components, it is updated using the useState setter function. Since state updates 
 are asynchronous, the functional update form should be used when the new state depends on the previous state.
+
+Que 6) Difference Between Props and State in React?
+🔹 Props
+👉 Props means properties.
+It is data that is sent from one component (parent) to another component (child).
+Simple Points:
+Props are read-only (you cannot change them).
+They are used to pass data between components.
+The child component cannot modify props.
+Used in both functional and class components.
+🧠 Easy Example:
+If a parent sends a title to a child:
+<Header title="Welcome" />
+The Header component just receives and shows "Welcome".
+It cannot change it.
+🔹 State
+👉 State is data stored inside a component.
+Simple Points:
+State can be changed (updated).
+It is used to store dynamic data.
+When state changes, the component re-renders automatically.
+Earlier, state was only in class components.
+Now (after React Hooks), we use useState() in functional components.
+🧠 Easy Example:
+A counter:
+const [count, setCount] = useState(0);
+When you click a button, count increases.
+This change is handled using state.
+🔥 Simple Difference in One Line
+Props → Data comes from outside (Parent → Child)
+State → Data is managed inside the component
+🎯 Real-Life Example
+Think like this:
+Props = Gift given by your friend 🎁 (You cannot change what’s inside)
+State = Money in your wallet 💰 (You can use or change it anytime)
+If you want, I can also give you a small React example showing both together 😊
+yes
+Great 👍 Let’s see a simple example using both Props and State together.
+🧩 Example: Counter with Title
+👨‍👩‍👧 Parent Component (App.js)
+import React from "react";
+import Counter from "./Counter";
+function App() {
+  return (
+    <div>
+      <Counter title="Simple Counter App" />
+    </div>
+  );
+}
+export default App;
+✅ What is happening here?
+title="Simple Counter App" is a prop
+Parent is sending data to the Counter component
+👶 Child Component (Counter.js)
+import React, { useState } from "react";
+function Counter(props) {
+  // State
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      {/* Using Props */}
+      <h2>{props.title}</h2>
+      {/* Using State */}
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increase
+      </button>
+    </div>
+  );
+}
+export default Counter;
+🔍 Now Understand Clearly
+🔹 Props
+props.title
+Comes from parent
+Cannot be changed inside Counter
+🔹 State
+count
+Stored inside Counter
+Changes when button is clicked
+Component re-renders automatically
+🎯 Very Simple Understanding
+Props	State
+Passed from parent	Managed inside component
+Cannot change	Can change
+Read-only	Read & Write
 
