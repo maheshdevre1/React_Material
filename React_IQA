@@ -9,6 +9,7 @@ Que 6) Difference Between Props and State in React?
 Que 7) What are Fragments in React?
 Que 8) What is the difference between controlled and uncontrolled components?
 Que 9) How does the DOM manage input value in Uncontrolled Components?
+Que 10) What are Hooks in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -425,4 +426,50 @@ Controlled → You tell your friend every word you write.
 Uncontrolled → You write everything yourself, and show it only at the end.
 🧠 One-Line Answer
 👉 In uncontrolled components, the browser DOM stores and manages the input value, and React accesses it using ref only when needed.
+
+Que 10) What are Hooks in React?
+👉 Hooks are special functions that allow functional components to use React features like state and lifecycle.
+Before Hooks:
+Only class components could use state and lifecycle methods.
+Functional components were just for displaying UI.
+After Hooks:
+Functional components can also use state, effects, context, etc.
+No need to write class components.
+🔹 Why Were Hooks Introduced?
+1️⃣ To Avoid Class Components Complexity
+Class components had:
+this keyword confusion
+Constructor
+Lifecycle methods
+More boilerplate code
+Hooks made code simpler and cleaner.
+2️⃣ To Use State in Functional Components
+Before:
+class Counter extends React.Component {
+  state = { count: 0 };
+}
+Now (using Hook):
+import { useState } from "react";
+function Counter() {
+  const [count, setCount] = useState(0);
+}
+Much simpler ✅
+3️⃣ To Reuse Logic Easily
+Hooks allow you to:
+Share logic between components
+Avoid repeating code
+Create custom hooks
+🔥 Most Common Hooks
+useState() → For state
+useEffect() → For lifecycle / side effects
+useContext() → For global data
+useRef() → For DOM access
+🎯 Very Simple Understanding
+Before Hooks:
+Functional components = Only display UI
+Class components = Handle logic
+After Hooks:
+Functional components = UI + Logic together
+🧠 One-Line Answer
+👉 Hooks are special functions that let functional components use state and other React features, making code simpler and more reusable.
 
