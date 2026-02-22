@@ -652,3 +652,33 @@ function InputFocus() {
 useRef is used to store a mutable value or access DOM elements without causing re-renders, and it is commonly used for 
 focusing inputs, storing previous values, or handling timers.
 
+Que 16) What is useRef?
+👉 useRef is a React Hook that creates a reference (ref) to:
+A DOM element
+Or a value that we want to store without re-rendering
+It returns an object with one property:
+ref.current
+🔹 Why Do We Use useRef?
+useRef is mainly used for:
+1️⃣ Accessing DOM elements
+2️⃣ Focusing input fields
+3️⃣ Storing previous values
+4️⃣ Storing mutable values without re-render
+🔹 Example 1: Accessing DOM (Focus Input)
+import { useRef } from "react";
+function InputFocus() {
+  const inputRef = useRef();
+  const handleClick = () => {
+    inputRef.current.focus();
+  };
+  return (
+    <>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleClick}>Focus Input</button>
+    </>
+  );
+}
+👉 When button is clicked, input gets focus.
+useRef is used to store a mutable value or access DOM elements without causing re-renders, and it is commonly used for 
+focusing inputs, storing previous values, or handling timers.
+
