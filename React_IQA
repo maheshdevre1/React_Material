@@ -17,6 +17,7 @@ Que 14) What is useContext?
 Que 15) What is useReducer?
 Que 16) What is useRef?
 Que 17) Difference Between useMemo and useCallback?
+Que 18) What are Custom Hooks in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -724,4 +725,53 @@ Used for expensive calculations	Used to prevent unnecessary re-renders
 👉 useCallback → Memoize function
 🧠 One-Line Interview Answer
 useMemo is used to cache computed values to avoid expensive recalculations, while useCallback is used to cache functions to prevent unnecessary re-creation and re-renders.
+
+Que 18) What are Custom Hooks in React?
+👉 Custom Hooks are your own reusable functions that use React Hooks inside them.
+They allow you to:
+Reuse logic across multiple components
+Keep components clean
+Avoid repeating code
+🔹 Why Do We Need Custom Hooks?
+Sometimes multiple components need the same logic.
+Example:
+Fetching data
+Form handling
+Window resize tracking
+Authentication logic
+Instead of writing the same code again and again, we create a custom hook.
+🔹 How to Create a Custom Hook?
+Rules:
+1️⃣ Function name must start with use
+2️⃣ It can use other hooks like useState, useEffect
+🔹 Example: Custom Hook for Counter
+✅ Step 1: Create Custom Hook
+import { useState } from "react";
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
+  return { count, increment, decrement };
+}
+✅ Step 2: Use It in Component
+function Counter() {
+  const { count, increment, decrement } = useCounter();
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+    </>
+  );
+}
+🔥 What Happened?
+Logic is inside useCounter
+Component becomes clean
+Same hook can be used in many components
+🎯 Simple Understanding
+👉 Custom Hook = Reusable logic function
+👉 Must start with use
+👉 Helps avoid code repetition
+🧠 One-Line Interview Answer
+Custom hooks are reusable JavaScript functions that use React hooks internally and allow sharing stateful logic across multiple components.
 
