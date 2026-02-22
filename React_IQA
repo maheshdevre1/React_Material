@@ -10,6 +10,7 @@ Que 7) What are Fragments in React?
 Que 8) What is the difference between controlled and uncontrolled components?
 Que 9) How does the DOM manage input value in Uncontrolled Components?
 Que 10) What are Hooks in React?
+Que 11) How does useState work?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -472,4 +473,23 @@ After Hooks:
 Functional components = UI + Logic together
 🧠 One-Line Answer
 👉 Hooks are special functions that let functional components use state and other React features, making code simpler and more reusable.
+
+Que 11) How does useState work?
+👉 useState is used to store and update data in a functional component.
+It gives you:
+A state value
+A function to update that value
+🔹 Example:
+const [count, setCount] = useState(0);
+count → Current value
+setCount → Function to change value
+0 → Starting value
+When you call:
+setCount(count + 1);
+React:
+Updates the value
+Re-renders the component
+Shows the updated count on screen
+🧠 In One Line
+👉 useState lets functional components store data, and when that data changes, React updates the UI automatically.
 
