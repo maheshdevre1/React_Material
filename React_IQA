@@ -28,6 +28,7 @@ Que 25) How Do You Handle Persistent State in React Apps?
 Que 26) Difference Between Derived State and Computed State in React?
 Que 27) How Can You Optimize State Updates for Performance in React?
 Que 28) How Do You Handle Asynchronous State Updates in React?
+Que 29) Can you explain what the Virtual DOM is and how React uses it?
 
 
 Que 1)How does React.js work?
@@ -1218,5 +1219,46 @@ Use useReducer for complex updates
 🧠 One-Line Interview Answer
 Since React state updates are asynchronous, we use the functional update form when state depends on previous values, 
 and use useEffect to handle logic that should run after state changes.
+
+Que 29) Can you explain what the Virtual DOM is and how React uses it?
+👉 The Virtual DOM is a lightweight copy of the real DOM kept in memory (inside JavaScript).
+Instead of directly updating the real DOM (which is slow), React first updates the Virtual DOM.
+🔹 Why Not Update Real DOM Directly?
+Updating the real DOM is slow because:
+It affects the actual UI
+Browser needs to repaint the screen
+Too many updates reduce performance
+So React uses Virtual DOM to make it faster.
+🔹 How React Uses Virtual DOM
+When state or props change:
+1️⃣ React creates a new Virtual DOM
+2️⃣ Compares it with the old Virtual DOM (this is called diffing)
+3️⃣ Finds what changed
+4️⃣ Updates only the changed parts in the real DOM
+👉 This makes updates faster and efficient.
+🔹 Simple Example
+Suppose this UI:
+<h1>Hello</h1>
+Now state changes to:
+<h1>Hello Mahesh</h1>
+React:
+Compares old and new Virtual DOM
+Sees only text changed
+Updates only that text in real DOM
+It does NOT rebuild the whole page.
+🔥 Key Points
+Virtual DOM = JavaScript copy of real DOM
+React updates VDOM first
+Uses diffing algorithm
+Updates only necessary parts
+Improves performance
+🎯 Very Simple Understanding
+👉 Real DOM = Original notebook
+👉 Virtual DOM = Rough copy
+React first updates the rough copy, checks differences, then updates only necessary lines in the original notebook.
+🧠 One-Line Interview Answer
+The Virtual DOM is a lightweight copy of the real DOM that React updates first, compares with the previous version
+using diffing, and then efficiently updates only the changed parts in the real DOM to improve performance.
+
 
 
