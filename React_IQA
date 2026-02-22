@@ -18,6 +18,7 @@ Que 15) What is useReducer?
 Que 16) What is useRef?
 Que 17) Difference Between useMemo and useCallback?
 Que 18) What are Custom Hooks in React?
+QUe 19) What are the Rules of Hooks?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -774,4 +775,46 @@ Same hook can be used in many components
 👉 Helps avoid code repetition
 🧠 One-Line Interview Answer
 Custom hooks are reusable JavaScript functions that use React hooks internally and allow sharing stateful logic across multiple components.
+
+QUe 19) What are the Rules of Hooks?
+React Hooks must follow some rules to work properly.
+✅ Rule 1: Call Hooks at the Top Level
+👉 Always call hooks at the top of your component.
+❌ Do NOT call hooks inside:
+if conditions
+loops
+nested functions
+✔ Correct:
+function Example() {
+  const [count, setCount] = useState(0);
+}
+❌ Wrong:
+if (true) {
+  useState(0);  // ❌ Not allowed
+}
+✅ Rule 2: Only Call Hooks in React Functions
+👉 Hooks can only be used:
+Inside React functional components
+Inside custom hooks
+❌ Not allowed in normal JavaScript functions.
+✅ Rule 3: Custom Hooks Must Start with "use"
+👉 Example:
+useFetch
+useForm
+useCounter
+This helps React identify them as Hooks.
+🔹 Why Are These Rules Important?
+These rules are important because:
+1️⃣ React keeps track of hooks by order
+2️⃣ If order changes, React gets confused
+3️⃣ It can cause bugs and wrong state updates
+Hooks must run in the same order every time.
+🎯 Simple Understanding
+👉 Hooks must be called:
+At the top
+In React components
+In the same order every render
+🧠 One-Line Interview Answer
+The Rules of Hooks ensure that hooks are called consistently and in the same order on every render, which helps React 
+correctly manage state and effects without causing bugs.
 
