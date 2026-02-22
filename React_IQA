@@ -22,6 +22,7 @@ QUe 19) What are the Rules of Hooks?
 Que 20) What is State Management in React?
 Que 21) What are some popular state management solutions in React / Next.js?
 Que 22) When Should You Use Redux Over Context API?
+Que 23) What is the Difference Between Client State and Server State?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -962,5 +963,43 @@ Language settings
 ✔ Easy to set up
 ✔ No extra library required
 
+Que 23) What is the Difference Between Client State and Server State?
+State in a React app can be of two types:
+Client State, Server State
+👉 Client state is data that is stored and managed inside the browser (frontend).
+Managed using useState, useReducer, Context, etc.
+Exists only while the app is running
+Not saved permanently
+✅ Examples:
+Form input values
+Button toggle (show/hide)
+Modal open/close
+Theme (dark/light)
+👉 If you refresh the page, this data is usually lost.
+🔹 2️⃣ Server State
+👉 Server state is data stored on the backend (server/database).
+Comes from an API
+Stored in database
+Shared across users
+Persistent
+✅ Examples:
+User account details
+Product list
+Orders
+Posts/comments
+👉 Even if you refresh or login from another device, data remains.
+🔥 Simple Difference
+Client State	Server State
+Stored in browser	Stored on server
+Temporary	Permanent
+Managed by React hooks	Managed by API / Database
+UI-related data	Business/data-related info
+🎯 Very Simple Example
+Think like this:
+Client State = Notes written on a whiteboard 📝 (temporary)
+Server State = Data saved in a database 💾 (permanent)
+🧠 One-Line Interview Answer
+Client state is managed locally in the frontend for UI-related data, while server state is stored and managed on the backend and is 
+persistent across sessions and users.
 
 
