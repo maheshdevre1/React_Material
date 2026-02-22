@@ -26,6 +26,8 @@ Que 23) What is the Difference Between Client State and Server State?
 Que 24) What is Context API in React?
 Que 25) How Do You Handle Persistent State in React Apps?
 Que 26) Difference Between Derived State and Computed State in React?
+Que 27) How Can You Optimize State Updates for Performance in React?
+
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -1149,5 +1151,36 @@ Uses useState/useEffect	Calculated in render or useMemo
 🧠 One-Line Interview Answer
 Derived state is when you store a value in state that is calculated from props or other state, while computed state is 
 calculated dynamically during render without storing redundant state, making it cleaner and less error-prone.
+
+Que 27) How Can You Optimize State Updates for Performance in React?
+To improve performance, we should make sure components re-render only when necessary.
+🔹 1️⃣ Keep State Localized
+👉 Keep state in the smallest possible component.
+❌ Don’t store state in a parent if only one child needs it.
+✔ This prevents unnecessary re-renders of other components.
+🔹 2️⃣ Use useMemo and useCallback
+👉 Prevent unnecessary recalculations and function recreations.
+useMemo → Caches computed values
+useCallback → Caches functions
+This helps especially when passing props to child components.
+🔹 3️⃣ Use React.memo
+👉 Wrap child components with React.memo to prevent re-render if props didn’t change.
+export default React.memo(MyComponent);
+🔹 4️⃣ Avoid Deeply Nested State
+❌ Complex nested objects cause expensive updates.
+✔ Normalize or split state into smaller pieces.
+🔹 5️⃣ Batch State Updates
+React automatically batches updates inside event handlers, which improves performance.
+🔹 6️⃣ Use Efficient State Management
+If using Redux or Zustand:
+Use selectors
+Update only required slices of state
+🔥 Simple Rule
+👉 Update only what is needed.
+👉 Avoid unnecessary re-renders.
+👉 Keep state simple and structured.
+🧠 One-Line Interview Answer
+State updates can be optimized in React by keeping state localized, using memoization techniques like useMemo and 
+useCallback, preventing unnecessary re-renders with React.memo, and structuring state efficiently.
 
 
