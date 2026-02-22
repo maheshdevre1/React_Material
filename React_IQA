@@ -27,6 +27,7 @@ Que 24) What is Context API in React?
 Que 25) How Do You Handle Persistent State in React Apps?
 Que 26) Difference Between Derived State and Computed State in React?
 Que 27) How Can You Optimize State Updates for Performance in React?
+Que 28) How Do You Handle Asynchronous State Updates in React?
 
 
 Que 1)How does React.js work?
@@ -1182,5 +1183,40 @@ Update only required slices of state
 🧠 One-Line Interview Answer
 State updates can be optimized in React by keeping state localized, using memoization techniques like useMemo and 
 useCallback, preventing unnecessary re-renders with React.memo, and structuring state efficiently.
+
+Que 28) How Do You Handle Asynchronous State Updates in React?
+In React, state updates are asynchronous, which means:
+👉 When you call setState or setCount, the value does NOT update immediately.
+React schedules the update and re-renders later.
+🔹 Problem Example
+setCount(count + 1);
+setCount(count + 1);
+You might expect +2, but it may update only once.
+Why?
+Because both updates use the same old count value.
+✅ Solution 1: Use Functional Update (Best Practice)
+When new state depends on previous state, use:
+setCount(prevCount => prevCount + 1);
+Now React always uses the latest value.
+Example:
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+👉 This correctly increases by 2.
+✅ Solution 2: Use useEffect for Side Effects
+If you want to do something after state updates:
+useEffect(() => {
+  console.log("Count updated:", count);
+}, [count]);
+👉 useEffect runs after the state update and re-render.
+✅ Solution 3: Use useReducer for Complex Logic
+If you have multiple related updates or complex transitions, useReducer gives more predictable state handling.
+🔥 Simple Rules
+Don’t expect state to update immediately
+Use functional update if depending on previous value
+Use useEffect to react to state changes
+Use useReducer for complex updates
+🧠 One-Line Interview Answer
+Since React state updates are asynchronous, we use the functional update form when state depends on previous values, 
+and use useEffect to handle logic that should run after state changes.
 
 
