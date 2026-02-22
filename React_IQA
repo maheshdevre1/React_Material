@@ -29,6 +29,7 @@ Que 26) Difference Between Derived State and Computed State in React?
 Que 27) How Can You Optimize State Updates for Performance in React?
 Que 28) How Do You Handle Asynchronous State Updates in React?
 Que 29) Can you explain what the Virtual DOM is and how React uses it?
+Que 30) What do you understand by reconciliation in React? Why is it important?
 
 
 Que 1)How does React.js work?
@@ -1259,6 +1260,42 @@ React first updates the rough copy, checks differences, then updates only necess
 🧠 One-Line Interview Answer
 The Virtual DOM is a lightweight copy of the real DOM that React updates first, compares with the previous version
 using diffing, and then efficiently updates only the changed parts in the real DOM to improve performance.
+
+Que 30) What do you understand by reconciliation in React? Why is it important?
+👉 Reconciliation is the process React uses to update the UI efficiently when state or props change.
+When something changes:
+1️⃣ React creates a new Virtual DOM
+2️⃣ Compares it with the previous Virtual DOM
+3️⃣ Finds the differences (diffing)
+4️⃣ Updates only the changed parts in the real DOM
+This whole process is called reconciliation.
+🔹 Why is Reconciliation Important?
+Because updating the real DOM is slow.
+Reconciliation helps React:
+Update only necessary elements
+Avoid full page re-render
+Improve performance
+Keep UI fast and smooth
+🔹 Simple Example
+Initial UI:
+<h1>Hello</h1>
+After state change:
+<h1>Hello Mahesh</h1>
+React:
+Compares old and new Virtual DOM
+Detects only text change
+Updates only the text
+It does NOT recreate the whole <h1> element.
+🔥 How React Decides Changes?
+React uses two main rules:
+1️⃣ Different element types → Replace completely
+2️⃣ Same type → Update only changed attributes
+For lists, React uses keys to track items.
+🎯 Simple Understanding
+👉 Reconciliation = React’s smart comparison process to update only what changed.
+🧠 One-Line Interview Answer
+Reconciliation is React’s process of comparing the new Virtual DOM with the previous one to identify changes 
+and efficiently update only the necessary parts of the real DOM, improving performance.
 
 
 
