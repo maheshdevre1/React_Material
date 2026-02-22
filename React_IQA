@@ -35,6 +35,7 @@ Que 32)If a React Application is Slow, How Would You Optimize It?
 Que 33) What is Code Splitting and Lazy Loading in React?
 Que 34) Difference Between React.Component and React.PureComponent?
 Que 35) How Does React Handle Re-rendering When State or Props Change?
+Que 36)Difference Between Controlled and Uncontrolled Components?
 
 
 Que 1)How does React.js work?
@@ -1502,6 +1503,36 @@ Only the text showing count updates
 🧠 One-Line Interview Answer
 When state or props change, React creates a new Virtual DOM, compares it with the previous version using a diffing 
 algorithm, and updates only the changed parts of the real DOM to efficiently re-render the UI.
+
+Que 36)Difference Between Controlled and Uncontrolled Components?
+The main difference is who controls the input value and when re-render happens.
+🔹 1️⃣ Controlled Components
+👉 React controls the input value using state.
+Value is stored in useState
+Every time user types → onChange updates state
+State update causes re-render
+Example:
+const [name, setName] = useState("");
+<input
+  type="text"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+🔎 Rendering Behavior:
+Every keystroke updates state
+Component re-renders on each change
+UI always stays in sync with React state
+🔹 2️⃣ Uncontrolled Components
+👉 DOM controls the input value.
+No state tracking
+React uses useRef to access value when needed
+No re-render on every keystroke
+Example:
+const inputRef = useRef();
+<input type="text" ref={inputRef} />
+🔎 Rendering Behavior:
+Typing does NOT cause React re-render
+React reads value only when needed (e.g., on submit)
 
 
 
