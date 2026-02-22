@@ -34,6 +34,7 @@ Que 31) How does React.memo help improve performance?
 Que 32)If a React Application is Slow, How Would You Optimize It?
 Que 33) What is Code Splitting and Lazy Loading in React?
 Que 34) Difference Between React.Component and React.PureComponent?
+Que 35) How Does React Handle Re-rendering When State or Props Change?
 
 
 Que 1)How does React.js work?
@@ -1462,6 +1463,45 @@ Less optimized	More optimized
 🧠 One-Line Interview Answer
 React.Component re-renders whenever setState is called, while React.PureComponent performs a shallow comparison of 
 props and state and re-renders only when changes are detected, improving performance.
+
+Que 35) How Does React Handle Re-rendering When State or Props Change?
+When a component’s state or props change, React automatically updates the UI.
+But it does this in a smart and efficient way.
+🔹 Step-by-Step Process
+1️⃣ State or Props Change
+When you call setState() or setCount(), or when parent passes new props:
+👉 React schedules a re-render.
+2️⃣ Create New Virtual DOM
+React creates a new Virtual DOM (a lightweight copy of the real DOM).
+3️⃣ Compare with Previous Virtual DOM (Diffing)
+React compares:
+Old Virtual DOM
+New Virtual DOM
+This comparison process is called diffing.
+4️⃣ Update Only Necessary Parts
+React updates only the changed parts in the real DOM.
+It does NOT reload the whole page.
+🔥 Why Is This Efficient?
+Updating the real DOM directly is slow.
+React:
+Uses Virtual DOM
+Finds minimal changes
+Updates only what is needed
+This makes applications fast.
+🔹 Simple Example
+const [count, setCount] = useState(0);
+When setCount(count + 1) runs:
+Component function runs again
+New Virtual DOM is created
+React compares old vs new
+Only the text showing count updates
+🎯 Simple Understanding
+👉 React re-runs the component when state or props change.
+👉 It compares Virtual DOM versions.
+👉 It updates only changed elements in real DOM.
+🧠 One-Line Interview Answer
+When state or props change, React creates a new Virtual DOM, compares it with the previous version using a diffing 
+algorithm, and updates only the changed parts of the real DOM to efficiently re-render the UI.
 
 
 
