@@ -19,6 +19,7 @@ Que 16) What is useRef?
 Que 17) Difference Between useMemo and useCallback?
 Que 18) What are Custom Hooks in React?
 QUe 19) What are the Rules of Hooks?
+Que 20) What is State Management in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -817,4 +818,61 @@ In the same order every render
 🧠 One-Line Interview Answer
 The Rules of Hooks ensure that hooks are called consistently and in the same order on every render, which helps React 
 correctly manage state and effects without causing bugs.
+
+Que 20) What is State Management in React?
+State management refers to how React stores, updates, and shares data in an application.
+When state changes, React automatically re-renders the UI to reflect the updated data.
+In React, state can be:
+Local State (inside one component)
+Global State (shared across multiple components)
+✅ Difference Between Local and Global State
+Local State	Global State
+Used inside one component	Shared across multiple components
+Managed using useState or useReducer	Managed using Context API, Redux, Zustand
+Used for UI-specific data	Used for app-wide data
+🔹 Local State Example
+👉 State used only inside one component.
+import { useState } from "react";
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increase
+      </button>
+    </>
+  );
+}
+export default Counter;
+Explanation:
+count belongs only to Counter
+Other components cannot access it
+This is Local State
+🔹 Global State Example (Using Context API)
+Step 1: Create Context
+import { createContext, useState } from "react";
+export const UserContext = createContext();
+export function UserProvider({ children }) {
+  const [user, setUser] = useState("Mahesh");
+  return (
+    <UserContext.Provider value={{ user }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+Step 2: Use in Component
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
+function Child() {
+  const { user } = useContext(UserContext);
+  return <h1>Hello {user}</h1>;
+}
+Explanation:
+user is shared between multiple components
+Any component inside UserProvider can access it
+This is Global State
+🎯 Interview Summary
+State management in React refers to how data is stored and updated in an application. Local state is used within a single 
+component using useState, while global state is shared across multiple components using tools like Context API or Redux.
 
