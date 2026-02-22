@@ -14,6 +14,7 @@ Que 11) How does useState work?
 Que 12) What is useEffect?
 Que 13) What is useLayoutEffect in React?
 Que 14) What is useContext?
+Que 15) What is useReducer?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -591,4 +592,32 @@ function Child() {
 👉 Child directly gets value without props.
 🧠 One-Line Interview Answer
 useContext allows functional components to access shared global data without passing props through multiple levels, helping avoid prop drilling.
+
+Que 15) What is useReducer?
+👉 useReducer is a React Hook used to manage complex state logic.
+It works like this:
+You have a state
+You send an action
+A reducer function decides how to update the state
+It is similar to how Redux works.
+🔹 Why Not Just useState?
+useState is good for simple state (like a counter).
+useReducer is better when:
+State has multiple values
+State logic is complex
+Many actions update the state
+🔹 Simple Example (Counter)
+Step 1: Create Reducer Function
+function reducer(state, action) {
+  if (action.type === "increment") {
+    return { count: state.count + 1 };
+  }
+  if (action.type === "decrement") {
+    return { count: state.count - 1 };
+  }
+  return state;
+}
+
+useReducer is used to manage complex state logic where multiple actions update the state, and it is preferred over useState
+when state management becomes complicated.
 
