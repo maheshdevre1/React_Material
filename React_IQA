@@ -12,6 +12,7 @@ Que 9) How does the DOM manage input value in Uncontrolled Components?
 Que 10) What are Hooks in React?
 Que 11) How does useState work?
 Que 12) What is useEffect?
+Que 13) What is useLayoutEffect in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -530,4 +531,25 @@ function App() {
 When the component loads → "Component Loaded" prints once.
 Because dependency array is [] (empty).
 👉 [] = Run only one time.
+
+Que 13) What is useLayoutEffect in React?
+useLayoutEffect is a React Hook that runs synchronously after the DOM is updated but before the browser paints the screen.
+It is mainly used when we need to:
+Measure DOM elements (height, width, position)
+Make DOM changes before the user sees the UI
+Prevent visual flickering
+✅ When to Use
+We should use useLayoutEffect only when:
+We need to read layout values (like offsetWidth, offsetHeight)
+We need to synchronously modify the DOM
+We want to avoid UI flickering
+For most side effects like API calls, subscriptions, or timers, we use useEffect.
+import { useRef, useLayoutEffect } from "react";
+function Example() {
+  const divRef = useRef();
+  useLayoutEffect(() => {
+    console.log(divRef.current.offsetWidth);
+  }, []);
+  return <div ref={divRef}>Hello</div>;
+}
 
