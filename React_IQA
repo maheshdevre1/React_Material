@@ -24,6 +24,7 @@ Que 21) What are some popular state management solutions in React / Next.js?
 Que 22) When Should You Use Redux Over Context API?
 Que 23) What is the Difference Between Client State and Server State?
 Que 24) What is Context API in React?
+Que 25) How Do You Handle Persistent State in React Apps?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -1052,5 +1053,56 @@ Often used with useState or useReducer for updating values.
 🧠 One-Line Interview Answer
 The Context API in React is used to share global data across components without prop drilling by using a Provider to pass data 
 and useContext to consume it.
+
+Que 25) How Do You Handle Persistent State in React Apps?
+Persistent state means saving data so it remains even after page refresh or browser restart.
+Normally, React state (useState) is temporary and resets on refresh.
+To make it persistent, we store data outside React state.
+🔹 Common Ways to Handle Persistent State
+1️⃣ Using Local Storage (Most Common)
+👉 Store data in the browser’s localStorage.
+Example:
+import { useState, useEffect } from "react";
+function Counter() {
+  const [count, setCount] = useState(() => {
+    const saved = localStorage.getItem("count");
+    return saved ? JSON.parse(saved) : 0;
+  });
+  useEffect(() => {
+    localStorage.setItem("count", JSON.stringify(count));
+  }, [count]);
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </>
+  );
+}
+👉 Now, even after refresh, the count remains saved.
+2️⃣ Using Session Storage
+Similar to localStorage
+Data clears when browser tab closes
+3️⃣ Using Backend (Database)
+👉 Save data on server via API.
+Example:
+User profile
+Orders
+Authentication
+Data remains available across devices and users.
+4️⃣ Using State Management Libraries
+Libraries like:
+Redux Persist
+Zustand (with persistence middleware)
+They automatically save global state in localStorage.
+🔥 Simple Understanding
+Temporary State	Persistent State
+Lost on refresh	Saved after refresh
+useState only	localStorage / API
+🎯 Real Example
+Dark mode preference → Save in localStorage
+Login user data → Save in backend + token storage
+🧠 One-Line Interview Answer
+Persistent state in React apps is handled by storing data in localStorage, sessionStorage, or a backend database 
+so that the state remains available even after page refresh or browser restart.
 
 
