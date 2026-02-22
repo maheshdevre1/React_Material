@@ -33,6 +33,7 @@ Que 30) What do you understand by reconciliation in React? Why is it important?
 Que 31) How does React.memo help improve performance?
 Que 32)If a React Application is Slow, How Would You Optimize It?
 Que 33) What is Code Splitting and Lazy Loading in React?
+Que 34) Difference Between React.Component and React.PureComponent?
 
 
 Que 1)How does React.js work?
@@ -1415,6 +1416,52 @@ Improves load performance	Improves runtime performance
 🎯 Simple Understanding
 👉 Code Splitting = Divide big file into smaller files
 👉 Lazy Loading = Load file only when required
+
+Que 34) Difference Between React.Component and React.PureComponent?
+Both are used to create class components, but they handle re-rendering differently.
+🔹 React.Component
+👉 It re-renders every time setState() is called.
+Even if:
+Props did not change
+State did not actually change
+It still re-renders.
+Example:
+class MyComponent extends React.Component {
+  render() {
+    console.log("Rendered");
+    return <h1>Hello</h1>;
+  }
+}
+Whenever state updates → component re-renders.
+🔹 React.PureComponent
+👉 It performs a shallow comparison of props and state.
+If props/state changed → Re-render
+If same → No re-render
+This improves performance.
+Example:
+class MyComponent extends React.PureComponent {
+  render() {
+    console.log("Rendered");
+    return <h1>Hello</h1>;
+  }
+}
+Now it only re-renders if data actually changes.
+🔥 What is Shallow Comparison?
+It checks:
+Primitive values normally
+Object references (not deep comparison)
+If reference is same → No re-render.
+🔹 Simple Difference
+React.Component	React.PureComponent
+Always re-renders on state update	Re-renders only if props/state changed
+No comparison	Shallow comparison
+Less optimized	More optimized
+🎯 Simple Understanding
+👉 Component = Always update
+👉 PureComponent = Update only if something changed
+🧠 One-Line Interview Answer
+React.Component re-renders whenever setState is called, while React.PureComponent performs a shallow comparison of 
+props and state and re-renders only when changes are detected, improving performance.
 
 
 
