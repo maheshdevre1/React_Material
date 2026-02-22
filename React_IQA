@@ -30,6 +30,7 @@ Que 27) How Can You Optimize State Updates for Performance in React?
 Que 28) How Do You Handle Asynchronous State Updates in React?
 Que 29) Can you explain what the Virtual DOM is and how React uses it?
 Que 30) What do you understand by reconciliation in React? Why is it important?
+Que 31) How does React.memo help improve performance?
 
 
 Que 1)How does React.js work?
@@ -1296,6 +1297,46 @@ For lists, React uses keys to track items.
 🧠 One-Line Interview Answer
 Reconciliation is React’s process of comparing the new Virtual DOM with the previous one to identify changes 
 and efficiently update only the necessary parts of the real DOM, improving performance.
+
+Que 31) How does React.memo help improve performance?
+👉 React.memo is a Higher-Order Component (HOC) that prevents unnecessary re-renders of a functional component.
+It tells React:
+“Only re-render this component if its props change.”
+🔹 Why Do We Need It?
+Normally:
+When a parent component re-renders
+All child components also re-render
+Even if their props didn’t change ❌
+This can reduce performance in large applications.
+🔹 How React.memo Helps
+React.memo compares previous props with new props.
+If props are same → ❌ No re-render
+If props changed → ✅ Re-render
+🔹 Example Without React.memo
+function Child({ name }) {
+  console.log("Child Rendered");
+  return <h1>{name}</h1>;
+}
+Even if name doesn’t change, Child re-renders when parent updates.
+🔹 Example With React.memo
+const Child = React.memo(function Child({ name }) {
+  console.log("Child Rendered");
+  return <h1>{name}</h1>;
+});
+Now:
+If name is same → Child does NOT re-render
+If name changes → Child re-renders
+🔥 When to Use React.memo?
+Use it when:
+Component receives props
+Component re-renders frequently
+Rendering is expensive
+Avoid using it everywhere unnecessarily.
+🎯 Simple Understanding
+👉 React.memo = “Re-render only if props change.”
+🧠 One-Line Interview Answer
+React.memo improves performance by preventing unnecessary re-renders of functional components when their props have 
+not changed, using shallow comparison.
 
 
 
