@@ -13,6 +13,7 @@ Que 10) What are Hooks in React?
 Que 11) How does useState work?
 Que 12) What is useEffect?
 Que 13) What is useLayoutEffect in React?
+Que 14) What is useContext?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -552,4 +553,42 @@ function Example() {
   }, []);
   return <div ref={divRef}>Hello</div>;
 }
+
+Que 14) What is useContext?
+👉 useContext is a React Hook used to share data between components without passing props manually at every level.
+This helps avoid something called prop drilling (passing props from parent → child → grandchild → many levels).
+🔹 Why Do We Need It?
+Imagine this structure:
+App
+ └── Parent
+      └── Child
+           └── GrandChild
+If App has user data and GrandChild needs it, normally we pass props through every level.
+That becomes messy 😓
+With useContext, we can directly access the data anywhere.
+🔹 When Should You Use It?
+Use useContext when:
+You want to share global data like:
+Logged-in user info
+Theme (dark/light mode)
+Language settings
+Many components need the same data
+You want to avoid prop drilling
+🔹 Simple Example
+import { createContext, useContext } from "react";
+const UserContext = createContext();
+function App() {
+  return (
+    <UserContext.Provider value="Mahesh">
+      <Child />
+    </UserContext.Provider>
+  );
+}
+function Child() {
+  const user = useContext(UserContext);
+  return <h1>Hello {user}</h1>;
+}
+👉 Child directly gets value without props.
+🧠 One-Line Interview Answer
+useContext allows functional components to access shared global data without passing props through multiple levels, helping avoid prop drilling.
 
