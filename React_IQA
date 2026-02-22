@@ -11,6 +11,7 @@ Que 8) What is the difference between controlled and uncontrolled components?
 Que 9) How does the DOM manage input value in Uncontrolled Components?
 Que 10) What are Hooks in React?
 Que 11) How does useState work?
+Que 12) What is useEffect?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -492,4 +493,41 @@ Re-renders the component
 Shows the updated count on screen
 🧠 In One Line
 👉 useState lets functional components store data, and when that data changes, React updates the UI automatically.
+
+Que 12) What is useEffect?
+👉 useEffect is a Hook used to perform side effects in functional components.
+Side effects mean:
+Fetching data from API
+Setting timers
+Updating the DOM
+Subscriptions
+It runs after the component renders.
+🔹 Role of Dependency Array
+The dependency array tells React when to run the effect.
+1️⃣ [] (Empty array)
+👉 Runs only once after component loads.
+2️⃣ [dep]
+👉 Runs only when that dependency changes.
+3️⃣ No array
+👉 Runs after every render.
+🔹 Cleanup Function
+useEffect can return a function.
+That function:
+Runs before next effect
+Runs when component unmounts
+Prevents memory leaks
+🧠 In One Line
+👉 useEffect is used to handle side effects, and the dependency array controls when the effect runs.
+🔹 Example 1: Run Only Once (Like component load)
+import { useEffect } from "react";
+function App() {
+  useEffect(() => {
+    console.log("Component Loaded");
+  }, []);
+  return <h1>Hello</h1>;
+}
+✅ What happens?
+When the component loads → "Component Loaded" prints once.
+Because dependency array is [] (empty).
+👉 [] = Run only one time.
 
