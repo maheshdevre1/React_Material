@@ -25,6 +25,7 @@ Que 22) When Should You Use Redux Over Context API?
 Que 23) What is the Difference Between Client State and Server State?
 Que 24) What is Context API in React?
 Que 25) How Do You Handle Persistent State in React Apps?
+Que 26) Difference Between Derived State and Computed State in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -1104,5 +1105,49 @@ Login user data → Save in backend + token storage
 🧠 One-Line Interview Answer
 Persistent state in React apps is handled by storing data in localStorage, sessionStorage, or a backend database 
 so that the state remains available even after page refresh or browser restart.
+
+Que 26) Difference Between Derived State and Computed State in React
+Sometimes in React, we need values that depend on other state or props.
+There are two ways to handle this:
+Derived State
+Computed State
+🔹 1️⃣ Derived State
+👉 Derived state means storing a value in state that is calculated from props or other state.
+Example:
+const [fullName, setFullName] = useState("");
+useEffect(() => {
+  setFullName(firstName + " " + lastName);
+}, [firstName, lastName]);
+Here:
+fullName is derived from firstName and lastName
+We are storing it separately
+⚠ Problem:
+It can cause bugs
+Data can go out of sync
+It creates unnecessary state
+That’s why React recommends avoiding derived state when possible.
+🔹 2️⃣ Computed State
+👉 Computed state means calculating the value directly during render instead of storing it.
+Example:
+const fullName = firstName + " " + lastName;
+Or using useMemo if calculation is expensive:
+const fullName = useMemo(() => {
+  return firstName + " " + lastName;
+}, [firstName, lastName]);
+✔ No extra state
+✔ Always up-to-date
+✔ Cleaner and safer
+🔥 Main Difference
+Derived State	Computed State
+Stored in state	Not stored in state
+Can get out of sync	Always fresh
+Usually avoid	Recommended approach
+Uses useState/useEffect	Calculated in render or useMemo
+🎯 Simple Understanding
+👉 Derived state = Saving a copy of data
+👉 Computed state = Calculating data when needed
+🧠 One-Line Interview Answer
+Derived state is when you store a value in state that is calculated from props or other state, while computed state is 
+calculated dynamically during render without storing redundant state, making it cleaner and less error-prone.
 
 
