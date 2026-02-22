@@ -23,6 +23,7 @@ Que 20) What is State Management in React?
 Que 21) What are some popular state management solutions in React / Next.js?
 Que 22) When Should You Use Redux Over Context API?
 Que 23) What is the Difference Between Client State and Server State?
+Que 24) What is Context API in React?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -1001,5 +1002,55 @@ Server State = Data saved in a database 💾 (permanent)
 🧠 One-Line Interview Answer
 Client state is managed locally in the frontend for UI-related data, while server state is stored and managed on the backend and is 
 persistent across sessions and users.
+
+Que 24) What is Context API in React?
+The Context API is a built-in feature in React used to share data globally across components without passing props manually at every level (avoiding prop drilling).
+It allows us to:
+Create a context
+Provide data using a Provider
+Consume data using useContext
+🔹 Why Do We Need It?
+Without Context:
+App → Parent → Child → GrandChild
+If App has user data, we must pass props through every level.
+With Context:
+👉 Any component can directly access the shared data.
+🔹 Steps to Use Context API
+1️⃣ Create Context
+import { createContext } from "react";
+export const UserContext = createContext();
+2️⃣ Provide Data
+import { useState } from "react";
+import { UserContext } from "./UserContext";
+function App() {
+  const [user, setUser] = useState("Mahesh");
+  return (
+    <UserContext.Provider value={{ user }}>
+      <Child />
+    </UserContext.Provider>
+  );
+}
+3️⃣ Consume Data
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
+function Child() {
+  const { user } = useContext(UserContext);
+  return <h1>Hello {user}</h1>;
+}
+🔥 Key Points
+createContext() → Creates context
+Provider → Supplies data
+useContext() → Accesses data
+Avoids prop drilling
+Best for global values like:
+Theme
+Authentication
+Language
+Often used with useState or useReducer for updating values.
+🎯 Simple Understanding
+👉 Context API allows you to share data globally without passing props through every component.
+🧠 One-Line Interview Answer
+The Context API in React is used to share global data across components without prop drilling by using a Provider to pass data 
+and useContext to consume it.
 
 
