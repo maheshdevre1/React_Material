@@ -16,6 +16,7 @@ Que 13) What is useLayoutEffect in React?
 Que 14) What is useContext?
 Que 15) What is useReducer?
 Que 16) What is useRef?
+Que 17) Difference Between useMemo and useCallback?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -681,4 +682,46 @@ function InputFocus() {
 👉 When button is clicked, input gets focus.
 useRef is used to store a mutable value or access DOM elements without causing re-renders, and it is commonly used for 
 focusing inputs, storing previous values, or handling timers.
+
+Que 17) Difference Between useMemo and useCallback?
+Both are used for performance optimization, but they do different things.
+✅ useMemo
+👉 useMemo caches (remembers) a computed value.
+It runs a function
+Stores the result
+Recalculates only when dependency changes
+🔹 Example
+import { useMemo } from "react";
+function Example({ num }) {
+  const squared = useMemo(() => {
+    console.log("Calculating...");
+    return num * num;
+  }, [num]);
+  return <p>Square: {squared}</p>;
+}
+👉 It only recalculates when num changes.
+👉 Avoids expensive calculations on every render.
+✅ useCallback
+👉 useCallback caches (remembers) a function.
+Returns the same function reference
+Prevents function from being recreated every render
+🔹 Example
+import { useCallback } from "react";
+function Example({ id }) {
+  const handleClick = useCallback(() => {
+    console.log("Clicked", id);
+  }, [id]);
+  return <button onClick={handleClick}>Click</button>;
+}
+👉 Function is recreated only when id changes.
+🔥 Main Difference
+useMemo	useCallback
+Caches value	Caches function
+Returns computed result	Returns function
+Used for expensive calculations	Used to prevent unnecessary re-renders
+🎯 Very Simple Trick to Remember
+👉 useMemo → Memoize value
+👉 useCallback → Memoize function
+🧠 One-Line Interview Answer
+useMemo is used to cache computed values to avoid expensive recalculations, while useCallback is used to cache functions to prevent unnecessary re-creation and re-renders.
 
