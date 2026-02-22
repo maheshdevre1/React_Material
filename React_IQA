@@ -32,6 +32,7 @@ Que 29) Can you explain what the Virtual DOM is and how React uses it?
 Que 30) What do you understand by reconciliation in React? Why is it important?
 Que 31) How does React.memo help improve performance?
 Que 32)If a React Application is Slow, How Would You Optimize It?
+Que 33) What is Code Splitting and Lazy Loading in React?
 
 
 Que 1)How does React.js work?
@@ -1376,6 +1377,44 @@ Use useCallback if passing functions to memoized components.
 To optimize a slow React app, I would reduce unnecessary re-renders using memoization techniques, implement code splitting 
 with React.lazy, optimize large lists with virtualization, localize state properly, use proper keys, and improve 
 server-state handling using caching libraries like React Query.
+
+Que 33) What is Code Splitting and Lazy Loading in React?
+Both techniques are used to improve performance and reduce the initial loading time of a React application.
+🔹 1️⃣ Code Splitting
+👉 Code Splitting means breaking your application bundle into smaller chunks.
+Instead of loading the entire app at once, React loads only the required parts.
+Why?
+Large bundle = Slow loading
+Smaller chunks = Faster loading
+🔹 2️⃣ Lazy Loading
+👉 Lazy Loading means loading a component only when it is needed.
+For example:
+Load a page component only when user navigates to that page.
+Don’t load it during initial app load.
+🔹 Example Using React.lazy
+import React, { Suspense } from "react";
+const About = React.lazy(() => import("./About"));
+function App() {
+  return (
+    <>
+      <h1>Home Page</h1>
+      <Suspense fallback={<p>Loading...</p>}>
+        <About />
+      </Suspense>
+    </>
+  );
+}
+What happens?
+About component is loaded only when needed.
+Until it loads, "Loading..." is shown.
+This improves performance.
+🔥 Simple Difference
+Code Splitting	Lazy Loading
+Breaks bundle into smaller files	Loads components when needed
+Improves load performance	Improves runtime performance
+🎯 Simple Understanding
+👉 Code Splitting = Divide big file into smaller files
+👉 Lazy Loading = Load file only when required
 
 
 
