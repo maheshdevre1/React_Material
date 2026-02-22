@@ -21,6 +21,7 @@ Que 18) What are Custom Hooks in React?
 QUe 19) What are the Rules of Hooks?
 Que 20) What is State Management in React?
 Que 21) What are some popular state management solutions in React / Next.js?
+Que 22) When Should You Use Redux Over Context API?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -936,4 +937,30 @@ Server data → React Query / SWR
 Popular state management solutions in React/Next.js include built-in hooks like useState, Context API for global state, 
 Redux Toolkit for large applications, Zustand for lightweight state management, and tools like React Query or SWR for managing 
 server-side state efficiently.
+
+Que 22) When Should You Use Redux Over Context API?
+Choosing between Redux and Context API depends on the size and complexity of your application.
+🔹 Use Redux When:
+👉 Your application is large and complex.
+Many components need shared state
+State logic is complicated
+Frequent state updates
+Need better debugging (Redux DevTools)
+Need predictable and centralized state management
+✔ Better for large-scale enterprise apps
+✔ Easy to track state changes
+✔ Good performance for complex apps
+🔹 Use Context API When:
+👉 Your application is small or medium-sized.
+Simple global data sharing
+Less complex state
+No heavy state logic
+Example:
+Theme (dark/light)
+Logged-in user info
+Language settings
+✔ Easy to set up
+✔ No extra library required
+
+
 
