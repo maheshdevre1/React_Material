@@ -20,6 +20,7 @@ Que 17) Difference Between useMemo and useCallback?
 Que 18) What are Custom Hooks in React?
 QUe 19) What are the Rules of Hooks?
 Que 20) What is State Management in React?
+Que 21) What are some popular state management solutions in React / Next.js?
 
 Que 1)How does React.js work?
 1. React.js works using a component-based architecture and a Virtual DOM to efficiently update the user interface.
@@ -875,4 +876,64 @@ This is Global State
 🎯 Interview Summary
 State management in React refers to how data is stored and updated in an application. Local state is used within a single 
 component using useState, while global state is shared across multiple components using tools like Context API or Redux.
+
+Que 21) What are some popular state management solutions in React / Next.js?
+In React and Next.js, we can manage state using built-in hooks or external libraries, depending on the project size and complexity.
+🔹 1️⃣ React Built-in Hooks
+useState
+useReducer
+useContext
+👉 Used for:
+Local state
+Small applications
+Simple global state (with Context)
+✔ Best for small to medium projects
+✔ No extra library needed
+🔹 2️⃣ Context API
+👉 Used to share global data across components.
+Example:
+Authentication
+Theme (dark/light)
+Language settings
+✔ Good for small to medium apps
+❌ Not ideal for very complex state logic
+🔹 3️⃣ Redux / Redux Toolkit
+👉 Most popular state management library.
+Used for:
+Large-scale applications
+Complex state logic
+Predictable state updates
+✔ Centralized store
+✔ Good debugging tools
+✔ Scalable
+Redux Toolkit is the modern and recommended way to use Redux.
+🔹 4️⃣ Zustand
+👉 Lightweight and simple state management library.
+✔ Less boilerplate than Redux
+✔ Easy to use
+✔ Good performance
+🔹 5️⃣ Recoil / Jotai / MobX
+👉 Alternative state libraries.
+Recoil → Fine-grained state updates
+Jotai → Minimal and atomic state
+MobX → Reactive state management
+Used when more control is needed.
+🔹 6️⃣ Server-Side State (Next.js)
+For handling server data:
+React Query
+useSWR
+Server Actions (Next.js)
+👉 Used for:
+API fetching
+Caching data
+Synchronizing server state
+🎯 When to Use What?
+Small app → useState + Context
+Medium app → Context or Zustand
+Large app → Redux Toolkit
+Server data → React Query / SWR
+🧠 Interview Summary (Short Version)
+Popular state management solutions in React/Next.js include built-in hooks like useState, Context API for global state, 
+Redux Toolkit for large applications, Zustand for lightweight state management, and tools like React Query or SWR for managing 
+server-side state efficiently.
 
