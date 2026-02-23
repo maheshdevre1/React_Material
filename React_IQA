@@ -39,6 +39,10 @@ Que 36)Difference Between Controlled and Uncontrolled Components?
 Que 37) How do you render a list of items in React?
 Que 38)Why is the key prop important in React lists?
 Que 39) What happens if we use array index as a key?
+Que 40) How do you conditionally render list items in React?
+Que 41) How do you update or remove an item from a list in React state?
+Que 42) Performance tips for large lists in React?
+
 
 
 Que 1)How does React.js work?
@@ -1639,6 +1643,103 @@ Example:
 Index as key can cause bugs when list changes.
 It may update wrong items.
 Use a unique ID instead whenever possible.
+
+Que 40) How do you conditionally render list items in React?
+Conditionally render means showing something only if a condition is true.
+In React, we can do this using:
+if statements
+Ternary operator (? :)
+.filter() with .map()
+🔹 Example using .filter() and .map()
+const users = [
+  { name: "Aman", active: true },
+  { name: "Raj", active: false }
+];
+return (
+  <ul>
+    {users
+      .filter(user => user.active)
+      .map(user => (
+        <li key={user.name}>{user.name}</li>
+      ))}
+  </ul>
+);
+🔹 What is happening here?
+.filter(user => user.active)
+→ It selects only active users.
+→ So "Raj" (inactive) is removed.
+.map()
+→ It displays only the filtered users.
+✅ Output:
+Aman
+🔹 Another simple way (using ternary operator)
+{users.map(user =>
+  user.active ? <li key={user.name}>{user.name}</li> : null
+)}
+Here:
+If user.active is true → show name
+If false → show nothing (null)
+✅ In short:
+Use .filter() to remove unwanted items.
+Use .map() to display items.
+You can also use a ternary operator inside .map().
+
+Que 41) How do you update or remove an item from a list in React state?
+In React, state is immutable.
+This means you cannot directly change the array like this:
+❌ Wrong:
+list.push("D");   // Not recommended
+list.splice(1, 1); // Not recommended
+Instead, you must:
+Create a new array
+Update the state using the setter function
+🔹 Removing an Item (Using .filter())
+const [list, setList] = useState(["A", "B", "C"]);
+const removeItem = (item) => {
+  setList(list.filter(i => i !== item));
+};
+✅ What happens here?
+.filter() creates a new array
+It removes the selected item
+setList() updates the state with the new array
+If you remove "B":
+Before:
+["A", "B", "C"]
+After:
+["A", "C"]
+🔹 Updating an Item (Using .map())
+If you want to update an item, use .map():
+const updateItem = (oldValue, newValue) => {
+  setList(list.map(item => 
+    item === oldValue ? newValue : item
+  ));
+};
+✅ What happens here?
+.map() checks every item
+If it matches oldValue, it replaces it
+Otherwise, it keeps it the same
+A new array is created and state is updated
+Example:
+Before:
+["A", "B", "C"]
+After updating "B" to "D":
+["A", "D", "C"]
+🎯 Important Rule
+👉 Never modify state directly.
+👉 Always create a new array and update using setState.
+✅ In short:
+Use .filter() to remove items.
+Use .map() to update items.
+Always create a new array.
+React re-renders automatically after state update.
+
+Que 42) Performance tips for large lists in React:
+✅ Use unique keys to help React track items properly.
+✅ Use virtualization (like react-window) to render only visible items.
+✅ Use React.memo to prevent unnecessary re-renders.
+✅ Use pagination or lazy loading instead of loading everything at once.
+🎯 In short:
+Render fewer items and avoid unnecessary re-renders to improve performance
 
 
 
