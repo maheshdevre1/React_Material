@@ -36,6 +36,9 @@ Que 33) What is Code Splitting and Lazy Loading in React?
 Que 34) Difference Between React.Component and React.PureComponent?
 Que 35) How Does React Handle Re-rendering When State or Props Change?
 Que 36)Difference Between Controlled and Uncontrolled Components?
+Que 37) How do you render a list of items in React?
+Que 38)Why is the key prop important in React lists?
+Que 39) What happens if we use array index as a key?
 
 
 Que 1)How does React.js work?
@@ -1533,6 +1536,109 @@ const inputRef = useRef();
 🔎 Rendering Behavior:
 Typing does NOT cause React re-render
 React reads value only when needed (e.g., on submit)
+
+Que 37) How do you render a list of items in React?
+In React, if you want to show multiple items (like names, fruits, products, etc.), you usually store them in an array and use the .map() function to display them on the screen.
+🔹 What .map() does
+.map() goes through each item in the array one by one and returns something (like an <li> element) for each item.
+🔹 Example
+const fruits = ["Apple", "Banana", "Mango"];
+return (
+  <ul>
+    {fruits.map((fruit, index) => (
+      <li key={index}>{fruit}</li>
+    ))}
+  </ul>
+);
+🔹 What is happening here?
+We have an array: ["Apple", "Banana", "Mango"]
+.map() runs for each fruit.
+For every fruit, it creates an <li> element.
+So finally, React shows:
+• Apple
+• Banana
+• Mango
+🔹 Why do we use key?
+key helps React identify each item uniquely.
+It is important when React updates or re-renders the list.
+👉 In this example, we used index as the key.
+But in real projects, it’s better to use a unique ID (like id) if available.
+✅ In short:
+Use .map() to loop through an array.
+Return JSX for each item.
+Always provide a unique key prop.
+
+Que 38)Why is the key prop important in React lists?
+When React shows a list of items, it needs a way to identify each item.
+The key prop helps React understand:
+Which item is new
+Which item was removed
+Which item was updated
+Instead of refreshing the whole list, React updates only the changed item.
+This makes the app faster and more efficient.
+🔹 Example
+Imagine you have this list:
+Apple
+Banana
+Mango
+Now if you remove Banana, React needs to know exactly which item was removed.
+The key helps React identify it correctly.
+Without a proper key, React might:
+Re-render unnecessary items
+Mix up data
+Cause unexpected UI behavior
+🔹 Why not use array index as key?
+Using index works sometimes, but it can cause problems if:
+Items are deleted
+Items are reordered
+Items are inserted in between
+👉 Best practice: Use a unique ID (like id from database).
+Example:
+{users.map((user) => (
+  <li key={user.id}>{user.name}</li>
+))}
+✅ In short:
+key helps React track list items.
+It improves performance.
+Always use a unique ID when possible.
+
+Que 39) What happens if we use array index as a key?
+Using the array index as a key works, but it can create problems when the list changes.
+React uses the key to understand which item is which.
+If you use the index, the position number changes when items are added, removed, or reordered.
+Because of that, React may:
+Update the wrong item
+Keep old data in the wrong place
+Cause unexpected UI bugs
+🔹 Simple Example
+Suppose you have this list:
+0 - Apple
+1 - Banana
+2 - Mango
+Now you remove Apple.
+The list becomes:
+0 - Banana
+1 - Mango
+Now the indexes changed:
+Banana was index 1 → now index 0
+Mango was index 2 → now index 1
+React may think:
+“Oh, index 0 is still Apple”
+But actually, it is Banana.
+This can cause wrong updates or UI issues.
+🔹 When is index safe?
+Using index as key is safe only if:
+The list is static (never changes)
+Items are not reordered
+Items are not added or removed
+Example:
+{fruits.map((fruit, index) => (
+  <li key={index}>{fruit}</li>
+))}
+✅ In short:
+Index as key can cause bugs when list changes.
+It may update wrong items.
+Use a unique ID instead whenever possible.
 
 
 
