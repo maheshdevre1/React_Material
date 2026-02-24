@@ -57,6 +57,8 @@ Que 54)What is the difference between useHistory and useNavigate?
 Que 55) How do you implement nested routes in React Router?
 Que 56) What are route parameters and how do you access them?
 Que 57) How do you redirect a user in React Router?
+Que 58) Client-Side Routing vs Server-Side Routing?
+Que 59)Difference Between <Switch> and <Routes>?
 
 
 Que 1)How does React.js work?
@@ -2033,6 +2035,64 @@ Que 57) How do you redirect a user in React Router?
 Using <Navigate> component:
 <Route path="/old" element={<Navigate to="/new" />} />
 Using useNavigate() hook for programmatic redirects.
+
+Que 58) Client-Side Routing vs Server-Side Routing?
+🔹 Client-Side Routing (React Router)
+Page loads only once (HTML + JS).
+After that, navigation happens using JavaScript.
+Page does NOT reload.
+Only the component changes.
+👉 Example:
+User goes to /about
+React Router loads <About />
+No page refresh
+✔ Faster
+✔ Smooth experience
+✔ Used in Single Page Applications (SPA)
+🔹 Server-Side Routing
+Every time you click a link:
+Browser sends request to server
+Server sends a new HTML page
+Page reloads completely
+👉 Example:
+User goes to /about
+Server sends about.html
+Browser reloads
+✔ Traditional websites
+❌ Slower compared to SPA
+🎯 Simple Difference:
+Client-side → No page reload
+Server-side → Page reload every time
+
+Que 59)Difference Between <Switch> and <Routes>?
+🔹 <Switch> (React Router v5)
+Renders the first matching route
+Order of routes is important
+Needed exact keyword
+Used component or render
+Example:
+<Switch>
+  <Route exact path="/" component={Home} />
+  <Route path="/about" component={About} />
+</Switch>
+🔹 <Routes> (React Router v6)
+Replacement for <Switch>
+Finds best match automatically
+Order does NOT matter
+Uses only element prop
+No need for exact
+Better support for nested routes
+Example:
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+</Routes>
+🎯 Simple Difference:
+Switch (v5)	Routes (v6)
+Old way	New way
+Order matters	Order doesn’t matter
+Needs exact	No exact needed
+Deprecated	Recommended
 
 
 
