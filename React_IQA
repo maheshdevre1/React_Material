@@ -50,6 +50,13 @@ Que 47) How do you prevent the default form submission behavior in React?
 Que 48) What is event bubbling and how can you stop it in React?
 Que 49) How do you handle multiple input fields in one form in React?
 Que 50) How do you reset form fields after submission in React?
+Que 51) What is React Router and why is it used?
+Que 52) Difference between <a> tag and <Link> in React Router?
+Que 53) What are the main components of React Router?
+Que 54)What is the difference between useHistory and useNavigate?
+Que 55) How do you implement nested routes in React Router?
+Que 56) What are route parameters and how do you access them?
+Que 57) How do you redirect a user in React Router?
 
 
 Que 1)How does React.js work?
@@ -1984,6 +1991,48 @@ Input fields become empty again.
 To reset a form in React:
 👉 Reset the state to its initial values.
 👉 React automatically updates the UI.
+
+Que 51) What is React Router and why is it used?
+React Router is a library that enables client-side routing in React applications. It allows you to create single-page applications (SPAs) where navigation between views happens without a full page reload, making apps faster and smoother.
+
+Que 52) Difference between <a> tag and <Link> in React Router?
+<a> tag: Reloads the whole page when navigating.
+<Link> component: Updates the URL and changes the component without reloading (SPA behavior).
+
+Que 53) What are the main components of React Router?
+<BrowserRouter> – Wraps the app and enables routing.
+<Routes> – Container for all route definitions.
+<Route> – Defines a path and the component to render.
+<Link> / <NavLink> – For navigation.
+useNavigate() – For programmatic navigation.
+
+Que 54)What is the difference between useHistory and useNavigate?
+In React Router v5 : navigation was done using useHistory().
+In React Router v6 : replaced with useNavigate().
+const navigate = useNavigate();
+navigate("/dashboard");
+
+Que 55) How do you implement nested routes in React Router?
+<Routes>
+  <Route path="/dashboard" element={<Dashboard />}>
+    <Route path="profile" element={<Profile />} />
+    <Route path="settings" element={<Settings />} />
+  </Route>
+</Routes>
+/dashboard/profile : shows Profile inside Dashboard.
+
+Que 56) What are route parameters and how do you access them?
+Route params are dynamic parts of the URL.
+<Route path="/users/:id" element={<User />} />
+Inside User component:
+import { useParams } from "react-router-dom";
+const { id } = useParams();
+/users/101 : id = 101
+
+Que 57) How do you redirect a user in React Router?
+Using <Navigate> component:
+<Route path="/old" element={<Navigate to="/new" />} />
+Using useNavigate() hook for programmatic redirects.
 
 
 
