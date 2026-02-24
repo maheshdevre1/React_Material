@@ -42,7 +42,9 @@ Que 39) What happens if we use array index as a key?
 Que 40) How do you conditionally render list items in React?
 Que 41) How do you update or remove an item from a list in React state?
 Que 42) Performance tips for large lists in React?
-
+Que 43) How would you render a nested list in React?
+Que 44) How do you handle dynamic addition of items in a list?
+Que 45) How do you handle dynamic sorting or filtering of lists in React?
 
 
 Que 1)How does React.js work?
@@ -1740,6 +1742,73 @@ Que 42) Performance tips for large lists in React:
 ✅ Use pagination or lazy loading instead of loading everything at once.
 🎯 In short:
 Render fewer items and avoid unnecessary re-renders to improve performance
+
+Que 43) How would you render a nested list in React?
+You can nest .map() calls: one for the parent array and another for the child array.
+Example:
+const categories = [
+  { name: "Fruits", items: ["Apple", "Banana"] },
+  { name: "Veggies", items: ["Carrot", "Tomato"] }
+];
+return (
+  <div>
+    {categories.map(cat => (
+      <div key={cat.name}>
+        <h3>{cat.name}</h3>
+        <ul>
+          {cat.items.map(item => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+);
+In this example, each level of data gets its own .map() loop, and both parent and child elements should have unique key props.
+
+Que 44) How do you handle dynamic addition of items in a list?
+In React, since state is immutable, you cannot directly modify the existing array. Instead, you create a new array that includes the new item and update state.
+Example:
+const [list, setList] = useState(["A", "B"]);
+const addItem = (item) => {
+  setList([...list, item]);
+};
+In this example:
+[...list, item] creates a new array with the existing items plus the new one.
+Calling setList with this new array updates the state and triggers a re-render, showing the updated list in the UI.
+
+Que 45) How do you handle dynamic sorting or filtering of lists in React?
+In React, lists are usually stored in state, and you can sort or filter them dynamically by creating a new array based on the original list and updating the state.
+Example:
+const [users, setUsers] = useState([
+  { name: "Aman", age: 25 },
+  { name: "Raj", age: 30 },
+  { name: "Sara", age: 22 }
+]);
+​
+// Filter active users
+const filteredUsers = users.filter(user => user.age > 24);
+​
+// Sort by name
+const sortedUsers = [...users].sort((a, b) => a.name.localeCompare(b.name));
+In this example:
+filter creates a new array containing only the items that meet the condition.
+sort rearranges the array items; using [...users] ensures the original state is not mutated.
+Updating state with the new array triggers a re-render, displaying the sorted or filtered list in the UI.
+50. What is the difference between rendering lists with map() vs forEach()?
+When rendering lists, it’s important to return JSX elements for each item. The choice between map() and forEach() affects this:
+map(): Returns a new array, which can contain JSX elements to be rendered. This is the preferred method for rendering lists in React.
+forEach(): Does not return a new array, so it cannot directly produce elements for rendering. It’s only useful for side effects.
+Example using map():
+const fruits = ["Apple", "Banana", "Mango"];
+return (
+  <ul>
+    {fruits.map(fruit => <li key={fruit}>{fruit}</li>)}
+  </ul>
+);
+In this example:
+map returns an array of <li> elements, which React renders.
+Using forEach here would not work, because it does not return the array of elements.
 
 
 
