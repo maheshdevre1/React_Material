@@ -45,6 +45,11 @@ Que 42) Performance tips for large lists in React?
 Que 43) How would you render a nested list in React?
 Que 44) How do you handle dynamic addition of items in a list?
 Que 45) How do you handle dynamic sorting or filtering of lists in React?
+Que 46) How are forms handled in React compared to plain HTML?
+Que 47) How do you prevent the default form submission behavior in React?
+Que 48) What is event bubbling and how can you stop it in React?
+Que 49) How do you handle multiple input fields in one form in React?
+Que 50) How do you reset form fields after submission in React?
 
 
 Que 1)How does React.js work?
@@ -1809,6 +1814,177 @@ return (
 In this example:
 map returns an array of <li> elements, which React renders.
 Using forEach here would not work, because it does not return the array of elements.
+
+Que 46) How are forms handled in React compared to plain HTML?
+🔹 In Plain HTML:
+The browser handles form data.
+When you submit, the page reloads.
+Data is taken directly from the DOM.
+🔹 In React:
+React controls the form.
+Form values are stored in state.
+Every time you type, onChange updates the state.
+The page does NOT reload.
+This is called a Controlled Component.
+🔹 Simple Example
+function MyForm() {
+  const [name, setName] = React.useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Submitted: " + name);
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+🔹 What is happening here?
+useState("") → Stores input value.
+value={name} → Input is controlled by React.
+onChange → Updates state when typing.
+e.preventDefault() → Stops page refresh.
+handleSubmit → Uses state data safely.
+✅ In Short:
+In HTML → Browser controls the form.
+In React → State controls the form.
+React forms are more predictable, easy to validate, and easier to manage.
+
+Que 47) How do you prevent the default form submission behavior in React?
+Normally, when you submit a form:
+The page reloads
+The browser handles the submission
+In React, we don’t want the page to reload.
+So we use:
+e.preventDefault();
+🔹 Example
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log("Form submitted!");
+};
+And use it like this:
+<form onSubmit={handleSubmit}>
+  <button type="submit">Submit</button>
+</form>
+🔹 What is happening?
+When you click Submit, the form tries to reload the page.
+e.preventDefault() stops the page reload.
+Now React controls what happens next.
+✅ In short:
+event.preventDefault() stops the page from refreshing and allows React to handle the form submission.
+
+Que 48) What is event bubbling and how can you stop it in React?
+🔹 What is Event Bubbling?
+Event bubbling means:
+👉 When you click on a child element,
+the event also moves up to its parent elements.
+So both child and parent events can run.
+🔹 Simple Example
+<div onClick={() => console.log("Parent clicked")}>
+  <button onClick={() => console.log("Button clicked")}>
+    Click Me
+  </button>
+</div>
+If you click the button, the output will be:
+Button clicked
+Parent clicked
+Because the event bubbles up from button → div.
+🔹 How to Stop Event Bubbling?
+Use:
+e.stopPropagation();
+Example:
+const handleClick = (e) => {
+  e.stopPropagation();
+  console.log("Button clicked only");
+};
+<div onClick={() => console.log("Parent clicked")}>
+  <button onClick={handleClick}>
+    Click Me
+  </button>
+</div>
+Now if you click the button:
+Button clicked only
+Parent event will NOT run.
+✅ In short:
+Event bubbling = Event moves from child to parent.
+Use event.stopPropagation() to stop it.
+Useful when you don’t want parent events to trigger.
+
+Que 49) How do you handle multiple input fields in one form in React?
+Instead of creating separate state for each input,
+we use one state object to store all form values.
+Then we use one common handleChange function to update them.
+🔹 Example
+const [formData, setFormData] = useState({
+  name: "",
+  email: ""
+});
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value
+  });
+};
+🔹 JSX
+<form>
+  <input
+    type="text"
+    name="name"
+    value={formData.name}
+    onChange={handleChange}
+  />
+  <input
+    type="email"
+    name="email"
+    value={formData.email}
+    onChange={handleChange}
+  />
+</form>
+🔹 What is happening?
+formData stores all input values.
+name attribute matches the state key.
+[e.target.name] dynamically updates the correct field.
+...formData keeps the old values safe.
+✅ In short:
+Use one state object.
+Use one common handleChange.
+Use input name attribute to update correct field.
+This makes forms cleaner and easier to manage 👍
+
+Que 50) How do you reset form fields after submission in React?
+In React, form inputs are usually controlled by state.
+So, to reset the form, you just reset the state values.
+When state becomes empty, the inputs also become empty.
+🔹 Example
+const [formData, setFormData] = useState({
+  name: "",
+  email: ""
+});
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log(formData);
+  // Reset form
+  setFormData({
+    name: "",
+    email: ""
+  });
+};
+🔹 What is happening?
+User enters name and email.
+On submit → handleSubmit runs.
+After submission → we set state back to empty values.
+React re-renders.
+Input fields become empty again.
+✅ In short:
+To reset a form in React:
+👉 Reset the state to its initial values.
+👉 React automatically updates the UI.
+
 
 
 
