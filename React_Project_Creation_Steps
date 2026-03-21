@@ -1,1 +1,68 @@
+ React JS
+ -----------
+ 
+ npx create-react-app blog-app ==> create react project
+ npm start ==> start react project
+ reactstrap ==> react website
+ npm install reactstrap
+ npm install bootstrap ==> install bootstrap
+ import 'bootstrap/dist/css/bootstrap.min.css'; ==> Add this in App.js file
+ https://reactrouter.com/
+ npm install react-router-dom@6   ==> For routing
+ 
+ Add below setting.json file to enable emmet
+ 
+ "emmet.triggerExpansionOnTab": true,
+"emmet.includeLanguages": {
+  "javascript": "javascriptreact"
+}
 
+
+download E7 + React to for auto import
+
+https://materializecss.com/ ==> For color
+
+https://axios-http.com/
+
+npm install axios ==> Server call
+npm install react-toastify ==> For message displaying
+import 'react-toastify/dist/ReactToastify.css';  ==> Add this in App.js file
+
+sample username and passwoprd
+ram@gmail.com
+123
+
+
+const AddPost=()=> {
+    return (
+        <div className="wrapper">
+
+        </div>
+    )
+}
+
+export default AddPost;
+
+
+
+Install Text Editor
+
+https://www.npmjs.com/package/jodit-react
+
+
+const Login=()=> {
+    return (
+        <div className="wrapper">
+               <h1>This is login page</h1>
+        </div>
+    )
+}
+
+
+const Login_Page=()=> {
+    return (
+        <div className="wrapper">
+               <h1>This is login page</h1>
+        </div>
+    )
+}
