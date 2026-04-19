@@ -2108,6 +2108,148 @@ Order matters	Order doesn’t matter
 Needs exact	No exact needed
 Deprecated	Recommended
 
+1. What are Class-Based Lifecycle Methods?
+
+In older React (class components), lifecycle methods control what happens during different stages of a component.
+
+Phases:
+1. Mounting (component created)
+constructor()
+render()
+componentDidMount()
+2. Updating (state/props change)
+shouldComponentUpdate()
+componentDidUpdate()
+3. Unmounting (component removed)
+componentWillUnmount()
+
+👉 These methods help in:
+
+API calls
+Updating UI
+Cleaning resources
+2. What is componentDidMount?
+
+It runs after the component is rendered for the first time.
+
+👉 Mostly used for:
+
+API calls
+DOM operations
+componentDidMount() {
+  console.log("Component loaded");
+}
+
+👉 Modern React equivalent:
+
+useEffect(() => {
+  // runs once
+}, []);
+3. What are Higher Order Components (HOC)?
+
+A HOC is a function that takes a component and returns a new component.
+
+👉 Used for:
+
+Reusability
+Adding extra functionality
+function withLogger(Component) {
+  return function() {
+    console.log("Rendered");
+    return <Component />;
+  }
+}
+
+👉 Example use:
+
+const Enhanced = withLogger(MyComponent);
+4. Difference between useDispatch and useSelector
+useDispatch	useSelector
+Used to send actions	Used to read state
+Calls reducer	Gets data from store
+const dispatch = useDispatch();
+dispatch({ type: "ADD" });
+
+const data = useSelector(state => state.count);
+5. Middleware in React (Redux)
+
+Middleware is used to handle async logic or side effects before action reaches reducer.
+
+Types:
+Redux Thunk → simple async (API calls)
+Redux Saga → complex async using generators
+Logger middleware → logs actions
+
+👉 Example:
+
+dispatch(fetchData());
+6. How to call API in Redux?
+Using Redux Thunk:
+const fetchData = () => {
+  return async (dispatch) => {
+    const res = await fetch("api-url");
+    const data = await res.json();
+
+    dispatch({ type: "SET_DATA", payload: data });
+  };
+};
+
+👉 Flow:
+Component → dispatch → middleware → API → reducer → store
+
+7. What are Portals?
+
+Portals allow rendering a component outside the parent DOM hierarchy.
+
+👉 Used for:
+
+Modals
+Popups
+ReactDOM.createPortal(
+  <div>Modal</div>,
+  document.getElementById("root2")
+);
+8. What is Render Props?
+
+A pattern where a component shares logic using a function as a prop.
+
+<MyComponent render={(data) => <h1>{data}</h1>} />
+
+👉 Used for code reuse
+
+9. What is a Pure Function in React?
+
+A function that:
+
+Same input → same output
+No side effects
+
+👉 Example:
+
+function add(a, b) {
+  return a + b;
+}
+
+👉 In React:
+
+Used in reducers
+Used in React.memo
+10. Can we put Hooks inside a variable?
+
+👉 ❌ No (Wrong way)
+
+let x = useState(); // not allowed outside component
+
+👉 ✅ Rules of Hooks:
+
+Only inside React function component
+Only at top level (not inside loop/condition)
+
+👉 Correct:
+
+function App() {
+  const [count, setCount] = useState(0);
+}
 
 
 
